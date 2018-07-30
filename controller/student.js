@@ -1,12 +1,11 @@
 const Model = require('../models/index')
-
 class Controller{
-    static getAllDataSubject(){
+    static showData(){
         return new Promise(function(res,rej){
-            Model.Subject.findAll({
-                include : Model.Teacher
+            Model.Student.findAll({
+                
             })
-            .then(data =>{
+            .then((data)=>{
                 res(data)
             })
     
@@ -16,12 +15,9 @@ class Controller{
         })
     }
 
-    static findById(id){
+    static getById(id){
         return new Promise(function(res,rej){
-            Model.Subject.findById(id,{
-                
-            })
-
+            Model.Student.findById(id)
             .then(data =>{
                 res(data)
             })
@@ -31,7 +27,6 @@ class Controller{
             })
         })
     }
-
 }
 
 module.exports = Controller

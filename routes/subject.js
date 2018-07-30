@@ -15,5 +15,19 @@ routes.get('/',(req,res)=>{
     })
 })
 
+routes.get('/:id/enrolled-students',(req,res)=>{
+    
+    Controller.findById(req.params.id)
+    .then(data =>{
+        // res.json(data)
+
+        res.render('subject/enroll',{data})
+    })
+
+    .catch(err =>{
+        res.send(err)
+    })
+})
+
 
 module.exports = routes

@@ -1,7 +1,6 @@
 const router = require('express').Router()
 const ControllerTeacher = require('../controller/teacher')
 const ControllerSubject = require('../controller/subject')
-const app = require('express')()
 
 
 
@@ -40,7 +39,7 @@ router.post('/add',(req,res)=>{
          email : req.body.email,
          SubjectId: req.body.SubjectId})
     .then(() =>{
-        res.redirect('/teacher')
+        res.redirect('/teacher',)
 
     })
 
