@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <%- include('../partials/head', { title: 'Form Subject' }) %>
+  <body>
+    <%- include('../partials/navbar') %>
+    <br><br><br>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <% if (message) { %>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              <strong><%= message %></strong>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          <% } else if (error) { %>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong><%= error %></strong>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          <% } %>
+          
+          <form action="/subject/add" method="POST">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Subject Name</label>
+              <input type="text" name="subject_name" class="form-control" placeholder="Enter subject name" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+          
+        </div>
+      </div>
+    </div>
+
+    <%- include('../partials/script') %>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "name": "sequelize-one-to-many",
+  "version": "1.0.0",
+  "description": "sequelize-express-one-to-many",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uber-fox-2018/sequelize-one-to-many.git"
+  },
+  "keywords": [
+    "sequelize",
+    "expressjs"
+  ],
+  "author": "arisupriatna14",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/uber-fox-2018/sequelize-one-to-many/issues"
+  },
+  "homepage": "https://github.com/uber-fox-2018/sequelize-one-to-many#readme",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "pg": "^7.4.3",
+    "sequelize": "^4.38.0",
+    "sequelize-cli": "^4.0.0"
+  }
+}
