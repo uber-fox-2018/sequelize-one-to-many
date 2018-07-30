@@ -17,13 +17,15 @@
                 </tr>
             </thead>
             <tbody>
+                <% let counter = 1 %>
                 <% subject.forEach( (dataSubject) => { %>
                     <tr>
                         <td><%= dataSubject.id %></td>
                         <td><%= dataSubject.name %></td>  
                         <td>
                             <% dataSubject.Teachers.forEach ( (dataTeacher) => { %>
-                                <%= dataTeacher.first_name + ' ' + dataTeacher.last_name%><br>
+                                <%= `${counter}. ${dataTeacher.first_name} ${dataTeacher.last_name}`%><br>
+                                <% counter++ %>
                             <% }) %>      
                         </td>
                     </tr>

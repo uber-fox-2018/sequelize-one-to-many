@@ -5,9 +5,11 @@ const urlEncodedParser = bodyParser.urlencoded({
     extended : false
 })
 
+const Teacher = Model.Teacher
+
 
 // READ DATA
-teacher.get('/pageTeacher', (req,res) => {
+teacher.get('/teacher', (req,res) => {
     Model.Teacher.findAll({
         include : [{
             model : Model.Subject
@@ -16,6 +18,29 @@ teacher.get('/pageTeacher', (req,res) => {
     .then( teachers => {
         res.render('page_teacher.ejs', {teacher : (teachers)})
         // res.send(teachers)
+    })
+
+})
+
+// ADD DATA
+teacher.get('/pageAddTeacher', (req,res) => {
+    res.render('page_teacher_add.ejs')
+})
+
+teacher.post('/test', urlEncodedParser, (req,res) => {
+    // res.send(req.body.first_name)
+    let dataTeacher = {
+        first_name : req.body.first_name,
+        last_name  : req.body.last_name,
+        email      : req.body.email
+    }
+
+    Teacher.create(dataTeacher)
+    .then(()=>{
+
+    })
+    .catch( err => {
+        res.send(err.errors[0].message)
     })
 
 })
