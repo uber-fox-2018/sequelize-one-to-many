@@ -17,7 +17,9 @@ class Controller {
   }
 
   static findById(id){
-    return model.Teacher.findById(id)
+    return model.Teacher.findById(id, {include: [
+      {model:model.Subject}
+    ]})
   }
 
   static update(inputObj, id){

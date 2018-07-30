@@ -4,6 +4,10 @@
   </head>
   <body>
     <h2><a href="/">Home</a></h2>
+    <% if (error) { %>
+      <h1><%= error.message %></h1>
+      <br>
+    <%} %>
     <br>
     <form action="/teachers/add" method="POST">
       First Name: <br/>

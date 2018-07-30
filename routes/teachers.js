@@ -5,6 +5,7 @@ const checkNull = require('../helpers/checkSubject');
 router.get('/', (req, res) => {
   controller.showAll()
   .then( teachers => {
+    
     res.render('teachers', {teachers, checkNull})
   })
   .catch( err => {
@@ -13,7 +14,7 @@ router.get('/', (req, res) => {
 })
 
 router.get('/add', (req, res) => {
-  res.render('teachers-add')
+  res.render('teachers-add', {error:null})
 })
 
 router.post('/add', (req, res) => {
@@ -24,17 +25,19 @@ router.post('/add', (req, res) => {
   }
   controller.add(newTeacher)
   .then(()=> {
-    res.render('teachers-add')
+    res.render('teachers-add', {error:null})
   })
-  .catch(err => {
-    res.send(err.message);
+  .catch(error => {
+    res.render('teachers-add', {error})
   })
 })
 
 router.get('/edit/:id', (req, res) => {
-  controller.findById(req.params.id)
+  controller
+  .findById(req.params.id)
   .then((teacher) => {
-    res.render('teachers-edit', {teacher})
+    res.json(teacher)
+    // res.render('teachers-edit', {teacher})
   })
   .catch(err => {
     res.send(err.message);
@@ -49,7 +52,7 @@ router.post('/edit/:id', (req, res) => {
   }
   controller.update(newTeacher, req.params.id)
   .then(() => {
-    res.send('Data updated!')
+    res.redirect('/teachers')
   })
   .catch(err => {
     res.send(err.message);
