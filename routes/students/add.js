@@ -20,7 +20,7 @@ const post = (req, res) => {
             res.redirect('/students')
         })
         .catch(err => {
-            if (err.name == "SequelizeValidationError")
+            if (err.name == "SequelizeValidationError" || "SequelizeUniqueConstraintError")
                 res.render('students/add', { validationErrors: err.errors })
             else
                 res.status(500).json(err)

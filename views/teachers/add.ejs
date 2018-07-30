@@ -14,6 +14,9 @@
                 <div class="row" style="padding: 15px">
                     <h2>Add teacher</h2>
                 </div>
+
+                <%- include('../partials/validation')%>
+                
                 <div class="row" style="padding: 15px">
                     <form action="/teachers/add" method="POST">
                         <div class="form-group">
@@ -28,12 +31,20 @@
                             <label for="email">Email address</label>
                             <input id="email" name="email" type="email" class="form-control">
                         </div>
+                        <div class="form-group">
+                            <label for="subject_id">Subject</label>
+                            <select id="subject_id" name="subject_id" class="form-control">
+                                <option value="">--Select subject--</option>
+                                <%subjects.forEach(subject => {%>
+                                    <option value="<%=subject.id%>"><%=subject.subject_name%></option>
+                                <%})%>
+                            </select>
+                        </div>
+                        <br/>
                         <a href="/teachers" class="btn btn-secondary">Cancel</a>
                         <input type="submit" value="Add" role="button" class="btn btn-primary">
                     </form>
                 </div>
-
-                <%- include('../partials/validation')%>
                 
             </div>
         </section>

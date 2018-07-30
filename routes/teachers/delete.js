@@ -4,7 +4,7 @@ const get = (req, res) => {
     const id = req.params.teacherId * 1;
 
     model.Teacher
-        .findOne({ where: { id } })
+        .findById(id, { include: ['Subject'] })
         .then(teacher => {
             res.render("teachers/delete", { teacher })
         })

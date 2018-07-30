@@ -1,25 +1,41 @@
+'use strict'
+
 const model = require('../../models')
 
+const Teacher = model.Teacher
+const Subject = model.Subject
+
+const formAddHandler = (res, validationErrors) => {
+    Subject
+        .findAll()
+        .then(subjects => {
+            res.render('teachers/add', { 
+                subjects: subjects, 
+                validationErrors: validationErrors })
+        })
+}
+
 const get = (req, res) => {
-    res.render('teachers/add', { validationErrors: [] })
+    formAddHandler(res, [])
 }
 
 const post = (req, res) => {
-
     let obj = {
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
-        email: req.body.email
+        first_name: req.body.first_name || null,
+        last_name: req.body.last_name || null,
+        email: req.body.email || null,
+        subject_id: req.body.subject_id || null
     }
 
-    model.Teacher
+    Teacher
         .create(obj)
         .then(teacher => {
             res.redirect('/teachers')
         })
         .catch(err => {
-            if (err.name == "SequelizeValidationError")
-                res.render('teachers/add', { validationErrors: err.errors })
+            if (err.name == "SequelizeValidationError") {
+                formAddHandler(res, err.errors)
+            }
             else
                 res.status(500).json(err)
         })

@@ -1,12 +1,17 @@
 const model = require('../../models')
+const Subject = model.Subject;
 
 module.exports = (req, res) => {
-    model.Subject
-        .findAll({ order: [['id']] })
+    Subject
+        .findAll({
+            include: ['Teachers'],
+            order: [['id']]
+        })
         .then(subjects => {
             res.render('subjects/', { subjects })
         })
         .catch(err => {
-            res.send(500).json(err)
+            res.status(500).json(err)
+            console.log(err)
         })
 }

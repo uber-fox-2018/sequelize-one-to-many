@@ -29,6 +29,10 @@
                         <dd>
                             <%=teacher.email%>
                         </dd>
+                        <dt>Subject</dt>
+                        <dd>
+                            <%=`${teacher.Subject == null ? 'unassigned' : teacher.Subject.subject_name}`%>
+                        </dd>
                     </dl>
                     <a href="/teachers" class="btn btn-secondary">Cancel</a>
                     <input type="submit" value="Delete" role="button" class="btn btn-danger">
