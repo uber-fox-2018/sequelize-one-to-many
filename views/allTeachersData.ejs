@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>All Teachers Data</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+
+<body>
+    <a href="/">
+        <button>HOME</button>
+    </a>
+    <center>
+        <h1>All Teachers Data</h1>
+        <a href="/all-teachers-add">
+            <h3>Add Teachers Data</h3>
+        </a>
+        <form action="/all-teachers-data" method="POST">
+            <table border="1px">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Subject</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% data.forEach(data =>{ %>
+                        <tr>
+                            <td>
+                                <%= data.firstName %>
+                            </td>
+                            <td>
+                                <%= data.lastName %>
+                            </td>
+                            <td>
+                                <%= data.email %>
+                            </td>
+                            <td>
+                                <% if(data.dataValues.subjectId === 0){ %>
+                                    unassigned
+                                <% } else{ %>
+                                    <%= data.dataValues.Subject.name %>
+
+                                <% } %>
+                            </td>
+                            <td><a href="/all-teachers-data/edit:<%= data.id %>">Edit</a> | <a href="/all-teachers-data/delete:<%= data.id %>">Delete</a></td>
+                        </tr>
+                        <% }) %>
+
+                </tbody>
+            </table>
+        </form>
+    </center>
+</body>
+
+</html>
