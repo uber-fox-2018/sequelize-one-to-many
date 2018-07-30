@@ -1,0 +1,23 @@
+<%- include('./partials/head.ejs', {namePage: 'Subject'}); %>
+  <table>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Subject Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% subjects.forEach(subject => { %>
+      <tr>
+        <td><%= subject.id%></td>
+        <td><%= subject.subject_name%></td>
+        <td><%= loopTeacher(subject) %></td>
+        <td><a href="/subjects/edit/<%=subject.id%>">Edit</a></td>
+        <td><a href="/subjects/delete/<%=subject.id%>" onclick="return alert('Data deleted!')">Delete</a></td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+  <br>
+  </body>
+</html>
