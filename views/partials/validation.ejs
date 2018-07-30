@@ -1,0 +1,9 @@
+<div class="row" style="padding: 15px">
+    <ul>
+        <%for (validationError of validationErrors) {%>
+            <li class="text text-danger">
+                <%=validationError.message%>
+            </li>
+            <%}%>
+    </ul>
+</div>
