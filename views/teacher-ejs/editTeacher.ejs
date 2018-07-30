@@ -31,7 +31,7 @@
     </p>
     <p>
       <label for="your-name">subject</label> is
-      <select name="subject">
+      <select name="SubjectId">
         <% for(let i = 0; i<subject.length;i++){  %>
           <option value="<%= subject[i].id %>">
             <%= subject[i].subjectName %>
@@ -40,10 +40,7 @@
       </select>
       <br>
       <br>
-      <input type="submit">
-      <!-- <input type="email" name="email" id="email" placeholder="<%= Teachers.email %>" required> -->
-    </p>
-    <p>
+
       <button type="submit">
         <svg version="1.1" class="send-icn" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
           y="0px" width="100px" height="36px" viewBox="0 0 100 36" enable-background="new 0 0 100 36" xml:space="preserve">

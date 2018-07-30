@@ -54,7 +54,7 @@ teacherRoutes.get("/teachers/edit/:id", function(req, res) {
       .then(function(subject) {
         console.log(`==>`,subject);
         
-        res.render("teacher-ejs/editTeacher", { teachers }, { subject });
+        res.render("teacher-ejs/editTeacher", { teachers , subject });
       });
     })
     .catch(err => {
