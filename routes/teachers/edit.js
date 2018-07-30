@@ -32,20 +32,11 @@ const get = (req, res) => {
 const post = (req, res) => {
     id = req.params.teacherId * 1
 
-    let obj = {
-        last_name: req.body.last_name || null,
-        fist_name: req.body.fist_name || null,
-        email: req.body.email || null,
-        subject_id: req.body.subject_id || null
-    }
-
-    console.log(obj)
-
     Teacher
         .findById(id)
         .then(teacher => {
-            teacher.last_name = req.body.last_name || null
             teacher.fist_name = req.body.fist_name || null
+            teacher.last_name = req.body.last_name || null
             teacher.email = req.body.email || null
             teacher.subject_id = req.body.subject_id || null
 
@@ -55,7 +46,7 @@ const post = (req, res) => {
                 })
                 .catch(err => {
                     if (err.name == "SequelizeValidationError" || "SequelizeUniqueConstraintError")
-                        formEditHandler(res, obj, err.errors)
+                        formEditHandler(res, teacher, err.errors)
                     else
                         res.status(500).json(err)
                 })
