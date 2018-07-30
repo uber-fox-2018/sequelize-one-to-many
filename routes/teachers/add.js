@@ -33,9 +33,8 @@ const post = (req, res) => {
             res.redirect('/teachers')
         })
         .catch(err => {
-            if (err.name == "SequelizeValidationError") {
+            if (err.name == "SequelizeValidationError" || "SequelizeUniqueConstraintError")
                 formAddHandler(res, err.errors)
-            }
             else
                 res.status(500).json(err)
         })
