@@ -1,6 +1,6 @@
 'use strict'
 
-const subject = require('express').Router()
+const routes = require('express').Router()
 const Models = require('../../models')
 const Subject = Models.Subject
 const bodyParser = require('body-parser');
@@ -8,7 +8,7 @@ const bodyParserUrlencoded = bodyParser.urlencoded({
     extended: false
 })
 
-subject.get('/subject', (req, res) => {
+routes.get('/', (req, res) => {
     Subject.findAll({
             order: [
                 ['id', 'ASC']
@@ -26,7 +26,7 @@ subject.get('/subject', (req, res) => {
         })
 })
 
-subject.get('/subject/:id', (req, res) => {
+routes.get('/:id/delete', (req, res) => {
     Subject.destroy({
             where: {
                 id: req.params.id
@@ -41,7 +41,7 @@ subject.get('/subject/:id', (req, res) => {
         })
 })
 
-subject.post('/updateSubject', bodyParserUrlencoded, (req, res) => {
+routes.post('/update', bodyParserUrlencoded, (req, res) => {
     let dataSubject = {
         id: req.body.id,
         subjectName: req.body.subjectName
@@ -52,11 +52,11 @@ subject.post('/updateSubject', bodyParserUrlencoded, (req, res) => {
             }
         })
         .then(() => {
-            res.redirect('subject')
+            res.redirect('/subject')
         })
 })
 
-subject.get('/updateSubject/:id', (req, res) => {
+routes.get('/:id/update', (req, res) => {
     Subject.findAll({
             where: {
                 id: req.params.id
@@ -71,21 +71,21 @@ subject.get('/updateSubject/:id', (req, res) => {
             })
         })
 })
-subject.post('/addSubject', bodyParserUrlencoded, (req, res) => {
+routes.post('/add', bodyParserUrlencoded, (req, res) => {
     Subject.create({
             subjectName: req.body.subjectName
         })
         .then(data => {
-            res.redirect("subject")
+            res.redirect("/subject")
         })
         .catch(err => {
-            res.redirect('subject', {
+            res.redirect('/subject', {
                 title: 'Subject',
                 header: 'Subject page ' + err,
             })
         })
 })
-subject.get('/addSubject', (req, res) => {
+routes.get('/add', (req, res) => {
     Subject.findAll()
         .then(data => {
             res.render('addSubject', {
@@ -94,7 +94,6 @@ subject.get('/addSubject', (req, res) => {
                 data: data
             })
         })
-
 })
 
-module.exports = subject
+module.exports = routes

@@ -11,13 +11,14 @@ module.exports = (sequelize, DataTypes) => {
       type:DataTypes.STRING,
       validate : {
         isEmail: true
-      }
+      },
+        unique: true
     },
     subjectId: DataTypes.STRING
   }, {});
   Teacher.associate = function(models) {
-    const subject = models.Subject
-    Teacher.belongsTo(subject, {foreignKey: 'subjectId'});
+    const Subject = models.Subject
+    Teacher.belongsTo(Subject,{foreignKey: 'subjectId'});
   };
   return Teacher;
 };

@@ -14,7 +14,7 @@
     <h1>
         <%=header%>
     </h1>
-    <a href="/addSubject">Add</a>
+    <a href="subject/add">Add</a>
     <br>
     <br>
     <table border="1">
@@ -22,7 +22,7 @@
             <th>ID</th>
             <th>Subject Name</th>
             <th>Teacher Name</th>
-            <th>Options</th>
+            <th>Action</th>
         </tr>
         <%for (let i = 0; i < data.length; i++) {%>
             <% let counter = 1%>
@@ -41,12 +41,8 @@
                 </td>
                 </td>
                 <td>
-                    <a href="/subject/<%= data[i].id%>" title="<%= data[i].id%>">
-                        Delete
-                    </a>
-                    |
-                    <a href="/updateSubject/<%= data[i].id%>" title="<%= data[i].id%>">
-                        Update
+                    <a href="/Subject/<%= data[i].id%>/update" title="<%= data[i].id%>">
+                        Enroll Student
                     </a>
                 </td>
             </tr>

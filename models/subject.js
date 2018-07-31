@@ -4,8 +4,10 @@ module.exports = (sequelize, DataTypes) => {
     subjectName: DataTypes.STRING
   }, {});
   Subject.associate = function(models) {
-    const teacher = models.Teacher
-    Subject.hasMany(teacher, {foreignKey: 'subjectId'});
+    const Teacher = models.Teacher
+    const Student = models.Student
+    Subject.hasMany(Teacher, {foreignKey: 'subjectId'});
+    Subject.belongsToMany(Student, {through:models.StudentSubject,foreignKey: 'subjectId'})
   };
   return Subject;
 };

@@ -2,14 +2,15 @@
 
 const routes = require('express').Router()
 const Models = require('../../models')
-const Teacher = Models.Teacher
+const Student = Models.Student
+const StudentSubject = Models.StudentSubject
 const bodyParser = require('body-parser');
 const bodyParserUrlencoded = bodyParser.urlencoded({
     extended: false
 })
 
 routes.get('/', (req, res) => {
-    Teacher.findAll({
+    Student.findAll({
             order: [
                 ['id', 'ASC']
             ],
@@ -18,9 +19,9 @@ routes.get('/', (req, res) => {
             }]
         })
         .then(data => {
-            res.render('teacher', {
-                title: 'teacher',
-                header: 'teacher page',
+            res.render('student', {
+                title: 'student',
+                header: 'Student page',
                 data: data
             })
         })
@@ -28,13 +29,13 @@ routes.get('/', (req, res) => {
 })
 
 routes.get('/:id/delete', (req, res) => {
-    Models.Teacher.destroy({
+    Models.Student.destroy({
             where: {
                 id: req.params.id
             }
         })
         .then(() => {
-            res.redirect('/teacher')
+            res.redirect('/student')
         })
         .catch(err => {
             console.log(err);
@@ -43,24 +44,24 @@ routes.get('/:id/delete', (req, res) => {
 })
 
 routes.post('/updateData', bodyParserUrlencoded, (req, res) => {
-    let dataTeacher = {
+    let dataStudent = {
         id: req.body.id,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
-        subjectId: req.body.subjectId
+        subjectId: req.body.subjectIdS
     }
-    Models.Teacher.update(dataTeacher, {
+    Models.Student.update(dataStudent, {
             where: {
                 id: req.body.id
             }
         })
         .then(() => {
-            res.redirect('/teacher')
+            res.redirect('/student')
         })
         .catch(err => {
-            res.render('updateTeacher', {
-                title: 'updateTeacher',
+            res.render('updateStudent', {
+                title: 'updateStudent',
                 id: '',
                 firstName: '',
                 lastName: '',
@@ -72,16 +73,16 @@ routes.post('/updateData', bodyParserUrlencoded, (req, res) => {
 })
 
 routes.get('/:id/update', (req, res) => {
-    Models.Teacher.findAll({
+    Models.Student.findAll({
             where: {
                 id: req.params.id
             }
         })
         .then(data => {
             console.log(data[0].dataValues.firstName);
-            res.render('updateTeacher', {
-                title: 'Update Teacher',
-                header: 'Update Teacher',
+            res.render('updateStudent', {
+                title: 'Update Student',
+                header: 'Update Student',
                 id: data[0].dataValues.id,
                 firstName: data[0].dataValues.firstName,
                 lastName: data[0].dataValues.lastName,
@@ -91,36 +92,36 @@ routes.get('/:id/update', (req, res) => {
         })
 })
 routes.post('/add', bodyParserUrlencoded, (req, res) => {
-    Models.Teacher.create({
+    Models.Student.create({
             firstName: req.body.firstName,
             lastName: req.body.lastName,
-            email: req.body.email,
-            subjectId: req.body.subjectId
+            email: req.body.email
         })
         .then(data => {
-            res.redirect("/Teacher")
+            res.redirect("/Student")
+
         })
         .catch(err => {
-            res.redirect('/Teacher', {
-                title: 'Teacher',
+            res.redirect('/Student', {
+                title: 'Student',
                 id: '',
                 firstName: '',
                 lastName: '',
                 email: '',
-                subjectId: '',
-                header: 'Teacher page ' + err,
+                header: 'Student page ' + err,
             })
         })
 })
+
 routes.get('/add', (req, res) => {
     Models.Subject.findAll()
-    .then(data => {
-        res.render('addTeacher', {
-            title: 'Add Teacher',
-            header: 'Add Teacher',
-            data:data
+        .then(data => {
+            res.render('addStudent', {
+                title: 'Add Student',
+                header: 'Add Student',
+                data: data
+            })
         })
-    })
-    
+
 })
 module.exports = routes

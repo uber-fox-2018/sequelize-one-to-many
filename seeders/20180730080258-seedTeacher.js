@@ -4,7 +4,7 @@ const fs = require('fs')
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    let rawData =  fs.readFileSync('./teacherData.json')
+    let rawData =  fs.readFileSync('./studentData.json')
     let data = JSON.parse(rawData)
     let result = []
 
@@ -14,10 +14,10 @@ module.exports = {
       result.push(data[i])
     }
 
-    return queryInterface.bulkInsert('Teachers', result, {});
+    return queryInterface.bulkInsert('Students', result, {});
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('Teachers', null, {});
+    return queryInterface.bulkDelete('Students', null, {});
   }
 };
