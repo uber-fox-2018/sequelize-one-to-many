@@ -21,6 +21,7 @@
                     <th>id</th>
                     <th>SubjectName</th>
                     <th>Teacher</th>
+                    <th>Option</th>
                     
                 </tr>
              </thead>
@@ -35,6 +36,9 @@
                                     <li> <%= dataTeachers.firstName %> <%= dataTeachers.lastName %></li>
                                 <%})%>
                             </ol>
+                        </td>
+                        <td>
+                            <a href="">EDIT</a> | <a href="/subject/delete/<&= subjectData.id %>">DELETE</a>
                         </td>
                        
                 </tr>
