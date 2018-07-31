@@ -14,6 +14,9 @@
     <h1>
         <%=header%>
     </h1>
+    <a href="/addSubject">Add</a>
+    <br>
+    <br>
     <table border="1">
         <tr>
             <th>ID</th>
@@ -21,8 +24,8 @@
             <th>Teacher Name</th>
             <th>Options</th>
         </tr>
-        <% let counter = 1%>
         <%for (let i = 0; i < data.length; i++) {%>
+            <% let counter = 1%>
             <tr>
                 <td>
                     <%= data[i].id%>

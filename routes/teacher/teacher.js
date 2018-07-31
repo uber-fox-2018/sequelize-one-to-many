@@ -59,9 +59,6 @@ teacher.post('/updateTeacher', bodyParserUrlencoded, (req, res) => {
             res.redirect('/teacher')
         })
         .catch(err => {
-            console.log(err);
-
-
             res.render('updateTeacher', {
                 title: 'updateTeacher',
                 id: '',
@@ -93,5 +90,39 @@ teacher.get('/updateTeacher/:id', (req, res) => {
             })
         })
 })
-
+teacher.post('/addTeacher', bodyParserUrlencoded, (req, res) => {
+    Models.Teacher.create({
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            subjectId: req.body.subjectId
+        })
+        .then(data => {
+            res.redirect("/Teacher")
+        })
+        .catch(err => {
+            res.redirect('/Teacher', {
+                title: 'Teacher',
+                id: '',
+                firstName: '',
+                lastName: '',
+                email: '',
+                subjectId: '',
+                header: 'Teacher page ' + err,
+            })
+        })
+})
+teacher.get('/addTeacher', (req, res) => {
+    Models.Subject.findAll()
+    .then(data => {
+        console.log(data[0].dataValues);
+        
+        res.render('addTeacher', {
+            title: 'Add Teacher',
+            header: 'Add Teacher',
+            data:data
+        })
+    })
+    
+})
 module.exports = teacher
