@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "andresudi",
+    "password": " ",
+    "database": "uberfox_sequelize_1_to_M",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
