@@ -1,5 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
+  const Op = sequelize.Op
   var Teacher = sequelize.define('Teacher', {
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
@@ -10,15 +11,20 @@ module.exports = (sequelize, DataTypes) => {
           args: true,
           msg: 'Checks your email format (foo@bar.com)'
         },
-        isUnique: function(email, callback) {
-          Teacher.findOne({ where: { email: email } })
-          .then(function(valid) {
-            if (valid) {
-              callback('Email is already registered');
+        isUnique: function(value, next){
+          Teacher.findOne({where: {email: value, id: { [Op.ne]: this.id}
+          }
+        })
+          .then(email => {
+            if(email == null){
+              return next('Email is already used here')
             } else {
-              callback();
+              return next()
             }
-          });
+          })
+          .catch(err =>{
+            return next(err)
+          })
         }
       }
     }
