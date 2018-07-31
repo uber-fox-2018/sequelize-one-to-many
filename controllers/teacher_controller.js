@@ -17,12 +17,14 @@ module.exports = {
           data: teacherAll,
           error: null
         })
+        // res.json(teacherAll)
       })
       .catch(err => {
         res.render('./teacher/index', {
           data: null,
           error: err.message
         })
+        // res.json(err)
       });
   },
   formTeacher: (req, res) => {
@@ -34,34 +36,18 @@ module.exports = {
   postTeacher: (req, res) => {
     models
       .Teacher
-      .findOne({
-        where: {
-          email: req.body.email
-        }
+      .create(req.body)
+      .then(() => {
+        res.render('./teacher/form-teacher', {
+          message: 'Data teacher successfully save',
+          error: null
+        })
       })
-      .then(checkEmail => {
-        if (checkEmail) {
-          res.render('./teacher/form-teacher', {
-            message: null,
-            error: 'Email already use!'
-          })
-        } else {
-          models
-            .Teacher
-            .create(req.body)
-            .then(() => {
-              res.render('./teacher/form-teacher', {
-                message: 'Data teacher successfully save',
-                error: null
-              })
-            })
-            .catch(err => {
-              res.render('./teacher/form-teacher', {
-                message: null,
-                error: err.message
-              })
-            })
-        }
+      .catch(err => {
+        res.render('./teacher/form-teacher', {
+          message: null,
+          error: err.message
+        })
       })
   },
   formEditTeacher: (req, res) => {
@@ -132,6 +118,9 @@ module.exports = {
           })
           .then(() => {
             res.redirect('/teacher')
+          })
+          .catch(err => {
+            res.send(err)
           })
       })
   },
