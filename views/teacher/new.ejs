@@ -5,11 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Form Teacher</title>
+  <style>
+      * {
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      }
+      
+      #header {
+        margin-bottom: 0;
+      }
+      h4 {
+        margin-top: 5px;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      th {
+        padding: 5px;
+      }
+
+      td {
+        padding: 10px;
+        font-size: 11pt;
+      }
+
+      #error {
+        background-color: red;
+        font-style: italic;
+        font-size: 10pt;
+      }
+
+    </style>  
 </head>
 <body>
-  <h1>Form Teacher - Create</h1>
+  <h1>Form Teacher - Register</h1>
 
-  <form>
+  <form action="/teacher/new" method="post">
     <label>
       First Name: 
       <input type="text" name="fname" required>
@@ -23,6 +55,9 @@
     <label>
       E-mail: 
       <input type="text" name="email" required>
+      <% if(x) { %>
+        <a id="error"><%= x %></a>
+      <% } %>
     </label><br>
 
     <label>

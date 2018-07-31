@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Form Teacher</title>
+  <style>
+      * {
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      }
+
+      label {
+        margin-bottom: 10px;
+      }
+
+      #header {
+        margin-bottom: 0;
+      }
+      h4 {
+        margin-top: 5px;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      th {
+        padding: 5px;
+      }
+
+      td {
+        padding: 10px;
+        font-size: 11pt;
+      }
+
+      #error {
+        background-color: red;
+        font-style: italic;
+        font-size: 10pt;
+      }
+
+    </style>  
+</head>
+<body>
+  <h1>Add Subject</h1>
+
+  <form action="/subject/new" method="post">
+    <label>
+      Subject Name: <br>
+      <input type="text" name="subjectName" required>
+    </label><br>
+
+    <input type="submit" value="Submit">
+
+  </form>
+</body>
+</html>

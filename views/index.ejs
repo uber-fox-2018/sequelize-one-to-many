@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Home</title>
+  <style>
+    * {
+      margin: 0;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+    }
+    body {
+      background-color: #1abc9c;
+    }  
+
+    .topbar {
+      height: 50px;
+      background-color: white;
+      position: relative;
+      
+    }
+
+    .topbar ul li {
+      list-style: none;
+      display: inline-block;
+      line-height: 50px;
+      margin-right: 10px;
+      position: relative;
+      margin-bottom: 3px;
+    }
+
+    a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .topbar a:hover {
+      border-bottom: solid 3px black;
+      transition: cubic-bezier(0.19, 1, 0.22, 1);
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <ul>
+     <a href="/"><li id="active">Home</li></a>
+     <a href="/teacher"><li>Teacher</li></a>
+     <!-- <a href="/data"><li>Teacher</li></a> -->
+     <a href="/subject"><li>Subject</li></a>
+    </ul>
+  </div>
+  
+</body>
+</html>

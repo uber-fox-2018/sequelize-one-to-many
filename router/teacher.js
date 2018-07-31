@@ -1,42 +1,19 @@
 const router = require('express').Router();
+const bodyParse = require('body-parser');
 const model = require('../models');
+const TeacherController = require('../controller/teacher');
+
 const Teacher = model.Teacher;
 const Subject = model.Subject;
 
-router.get('/', (req, res) => {
-  Teacher.findAll({
-    include: {
-      model: Subject
-    }
-  })
-  .then(data => {
-    console.log(data);
-    
-    res.render('teachers', {data:data});
-  })
-  .catch(err => {
-    res.send(err);
-  })
-});
+router.use(bodyParse.json());
+router.use(bodyParse.urlencoded({extended: true}));
 
-router.get('/create', (req, res) => {
-  res.render('form-teacher');
-
-});
-
-router.get('/edit', (req, res) => {
-  // Teacher.findById({
-  //   include: {
-  //     model: Subject
-  //   }
-  // })
-  // .then(data => {
-    
-    res.render('edit-teacher');
-  // })
-  // .catch(err => {
-  //   res.send(err);
-  // });
-});
+router.get('/', TeacherController.index);
+router.get('/new', TeacherController.regist);
+router.post('/new', TeacherController.post);
+router.get('/edit/:id', TeacherController.edit)
+router.post('/update', TeacherController.update);
+router.get('/erase/:id', TeacherController.erase);
 
 module.exports = router;

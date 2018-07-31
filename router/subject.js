@@ -1,20 +1,16 @@
 const router = require('express').Router();
+const bodyParse = require('body-parser');
 const model = require('../models');
+const SubjectController = require('../controller/subject');
+
 const Subject = model.Subject;
+const Teacher = model.Teacher;
 
-router.get('/', (req, res) => {
-  Subject.findAll()
-    .then(data => {
-      res.send(data)
-    })
-    .catch(err => {
-      res.send(err);
-    });
-});
+router.use(bodyParse.json());
+router.use(bodyParse.urlencoded({extended: true}));
 
-router.get('/create', (req, res) => {
-  res.send('masuk!')
-    
-});
+router.get('/', SubjectController.index);
+router.get('/new', SubjectController.add);
+router.post('/new', SubjectController.post);
 
 module.exports = router;

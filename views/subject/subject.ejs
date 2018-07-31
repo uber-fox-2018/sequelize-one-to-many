@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+    <meta charset="UTF-8">
+    <title>Subject Data</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div class="container">
+      <table class="responsive-table">
+        <caption>Subjects Data</caption>
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Subject Name</th>
+            <th scope="col">Teachers</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <td colspan="7" ><a href="/subject/new" id="regist">New</a></td>
+          </tr>
+        </tfoot>
+        <tbody>
+            <% data.forEach(data => { %>
+              <tr>
+                <td><%= data.id %> </td>
+                <td><%= data.subjectName %> </td>
+                <td>
+                  <table>
+                    <% let no=1; data.Teachers.forEach(teacher => { %>
+                      <tr>
+                        <%= no++ %>. <%= teacher.firstName %> <%= teacher.lastName%> <br>
+                      </tr>
+                    <% }) %>
+                  </table>
+                </td>
+              </tr>
+            <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+
+</html>

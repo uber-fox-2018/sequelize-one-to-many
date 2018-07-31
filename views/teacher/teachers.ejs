@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+    <meta charset="UTF-8">
+    <title>Teachers Data</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div class="container">
+      <table class="responsive-table">
+        <caption>Teachers Data</caption>
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Subject</th>
+            <th scope="col">Options</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <td colspan="7"><a href="/teacher/new" id="regist">New</a></td>
+          </tr>
+        </tfoot>
+        <tbody>
+            <% data.forEach(data => { %>
+              <tr>
+                <td><%= data.id %> </td>
+                <td><%= data.firstName %> </td>
+                <td><%= data.lastName %> </td>
+                <td><%= data.email %> </td>
+                <td>
+                  <% if(data.Subject !== null) { %>
+                        <%= data.Subject.subjectName %>
+                  <% } else { %>
+                    <%= 'Unassigned' %>
+                  <% } %>
+                  <td id="options">
+                    <a href="/teacher/edit/<%= data.id %>" id="update">Update</a> 
+                    <a href="/teacher/erase/<%= data.id %>" id="delete">Delete</a>
+                  </td>
+                </td>
+              </tr>
+            <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+
+</html>

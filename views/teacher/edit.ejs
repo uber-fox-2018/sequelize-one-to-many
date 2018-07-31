@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Edit Teacher</title>
+    <style>
+        * {
+          font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        #header {
+          margin-bottom: 0;
+        }
+        h4 {
+          margin-top: 5px;
+        }
+  
+        a {
+          text-decoration: none;
+        }
+  
+        th {
+          padding: 5px;
+        }
+  
+        td {
+          padding: 10px;
+          font-size: 11pt;
+        }
+  
+      </style>  
+  </head>
+  <body>
+      <h1>Form Teacher | Edit</h1>
+      <form action="/teacher/update" method="post">
+        <label>
+          First Name:
+          <input type="text" name="nama_id" value="<%= x[0].id %>" style="display: none">
+          <input type="text" name="fname" required value="<%= x[0].firstName %>">
+        </label><br>
+    
+        <label>
+          Last Name:
+          <input type="text" name="lname" value="<%= x[0].lastName %>" required>
+        </label><br>
+    
+        <label>
+          E-Mail: 
+          <input type="text" name="email" value="<%= x[0].email %>" required>
+        </label><br>
+    
+        <label>
+          Subject:
+          <input type="text" name="subject" value="<%= x[0].subjectId %>" required>
+        </label><br>
+    
+        <input type="submit" value="Update">
+
+      </form>  
+      
+    </center>
+    
+  </body>
+</html>
